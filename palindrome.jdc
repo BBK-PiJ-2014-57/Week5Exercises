@@ -1,0 +1,21 @@
+String toTest = "abcdefghfedcba";
+println(isPalindrome(toTest));
+
+boolean isPalindrome(String toTest)
+{
+	int len;
+	boolean shorttest;
+	len = toTest.length();
+	if(len <= 1)
+	{
+		return true;
+	}
+	else
+	{
+		String nexttoTest = toTest.substring(1, len-1);
+		String start = toTest.substring(0, 1);
+		String end = toTest.substring(len-1);
+		shorttest = (start.equals(end));
+		return shorttest && isPalindrome(nexttoTest);
+	}
+}

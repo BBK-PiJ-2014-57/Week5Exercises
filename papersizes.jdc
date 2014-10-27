@@ -1,0 +1,48 @@
+Paper toFind = new Paper();
+toFind.name = "A5";
+double[] toPrint = findLen(toFind);
+println(toPrint[0]+"x"+toPrint[1]);
+double[] findLen(Paper paper)
+{
+	println(paper.name);
+	double[] result = new double[2];
+	int len;
+	int width;
+	int lengthofpaper = paper.name.length();
+	int size = Integer.parseInt(paper.name.substring(1));
+	double[] newresult;
+	if(size!=0)
+	{
+		Paper newtoFind = new Paper();
+		newtoFind.name = "A"+Integer.toString((size-1));
+		newresult = findLen(newtoFind);
+		result[1] = newresult[0];
+		result[0] = ((0.5*newresult[0]*newresult[1])/result[1]);
+	}
+	else if (lengthofpaper != 2)
+	{
+		Paper newtoFind2 = new Paper();
+		String afters = "";
+		for(int i= 1; i<(lengthofpaper-1); i++)
+		{
+			afters += "0";
+		}
+		newtoFind2.name = "A"+afters;
+		newresult = findLen(newtoFind2);
+		result[0] = newresult[1];
+		result[1] = ((2.0*newresult[0]*newresult[1])/result[0]);
+	}
+	else
+	{
+		
+		result[0] = 841;
+		result[1] = 1189;
+	}
+	return result;
+}
+
+class Paper{
+	String name;
+	int width;
+	int length;
+}
